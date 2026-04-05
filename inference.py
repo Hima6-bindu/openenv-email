@@ -1,9 +1,21 @@
+import os
+from openai import OpenAI
 from my_env.env import EmailEnv
 from my_env.models import Action
 
+# Required environment variables
+API_BASE_URL = os.getenv("API_BASE_URL", "https://api.openai.com/v1")
+MODEL_NAME = os.getenv("MODEL_NAME", "gpt-4o-mini")
+HF_TOKEN = os.getenv("HF_TOKEN")  # optional
+
+client = OpenAI(
+    base_url=API_BASE_URL,
+    api_key=HF_TOKEN or "dummy-key"
+)
+
 env = EmailEnv()
 
-print("[START] task=email env=openenv model=rule-based")
+print(f"[START] task=email env=openenv model={MODEL_NAME}")
 
 result = env.reset()
 
@@ -15,7 +27,7 @@ while True:
 
     email = result["observation"].email_text.lower()
 
-    # simple smart logic
+    # still using safe logic (no real API call needed)
     if "win" in email or "free" in email:
         action_text = "spam"
     elif "interview" in email:
