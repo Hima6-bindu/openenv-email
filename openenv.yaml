@@ -1,0 +1,9 @@
+name: email-env
+description: Email classification environment
+
+entrypoint: inference.py
+
+tasks:
+  - easy
+  - medium
+  - hard
