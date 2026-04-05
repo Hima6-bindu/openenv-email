@@ -1,13 +1,15 @@
 [project]
 name = "email-openenv"
 version = "0.1.0"
-description = "Email OpenEnv environment"
-authors = [{name = "Bindu"}]
 dependencies = [
-    "fastapi",
-    "uvicorn",
-    "pydantic"
+  "fastapi",
+  "uvicorn",
+  "pydantic",
+  "openenv-core>=0.2.0"
 ]
+
+[project.scripts]
+server = "server.app:app"
 
 [build-system]
 requires = ["setuptools"]
