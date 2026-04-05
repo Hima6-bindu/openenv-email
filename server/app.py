@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -23,3 +24,9 @@ def step(req: ActionRequest):
         return {"observation": "Marked important", "reward": 1.0, "done": False}
     else:
         return {"observation": "Replied", "reward": 1.0, "done": True}
+
+def main():
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+if __name__ == "__main__":
+    main()
